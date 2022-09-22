@@ -23,16 +23,14 @@ gallery.addEventListener('click', onGalleryItemClick);
 let modalCreate = null;
 
 function onGalleryItemClick(e) {
+    e.preventDefault();
     if (e.target === e.currentTarget) {
         return;
     };
-
-    e.preventDefault();
-
+    
     const modal = basicLightbox.create(`
     <img src="${e.target.dataset.source}" width="800" heigth="600">
     `,
-    
     {
         onClose: () => {
             window.removeEventListener('keydown', onWindowClickEscape)
@@ -51,6 +49,4 @@ function onWindowClickEscape(e) {
     if (e.code === 'Escape') {
         modalCreate.close();
     };
-
-    console.log(e.code);
 };
